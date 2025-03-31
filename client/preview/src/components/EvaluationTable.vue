@@ -131,7 +131,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from "vue";
+import { computed, } from "vue";
 import type {
   Dimension,
   ScoreDescriptions,
@@ -202,13 +202,6 @@ const getTotalScoreColor = (score: number): string => {
 const isMobile = useMediaQuery("(max-width: 767px)");
 let mediaQueryList: MediaQueryList | null = null; // 存储 MediaQueryList 实例
 
-const checkScreenSize = () => {
-  if (mediaQueryList) {
-    isMobile.value = mediaQueryList.matches; // 更新 isMobile 的值
-    console.log("Screen size check, isMobile:", isMobile.value); // 调试日志
-  }
-};
-// --- 屏幕尺寸检测结束 ---
 </script>
 
 <style scoped>
