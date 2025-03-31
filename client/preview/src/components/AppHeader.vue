@@ -12,7 +12,7 @@
     </div>
 
     <p class="subtitle-links">
-      <a href="https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME" target="_blank" rel="noopener noreferrer">GitHub 仓库</a> |
+      <a href="https://github.com/HerSophia/AI-Writing-Arena" target="_blank" rel="noopener noreferrer">GitHub 仓库</a> |
       <el-link type="primary" :underline="false" @click="showMethodology" class="methodology-link">评估方法说明</el-link>
     </p>
   </header>
