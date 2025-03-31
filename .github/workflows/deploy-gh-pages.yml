@@ -1,4 +1,4 @@
-name: Deploy Frontend to GitHub Pages
+name: Deploy Frontend Preview to GitHub Pages
 
 # 触发工作流的事件：当 main 分支有 push 操作时
 on:
