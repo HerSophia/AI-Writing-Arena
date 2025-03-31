@@ -17,11 +17,11 @@ export default defineConfig(({ command, mode }) => { // <-- 改成接收参数�
       vue(),
       AutoImport({
         resolvers: [ElementPlusResolver()],
-        dts: path.resolve(__dirname, 'src/auto-imports.d.ts'),
+        dts: path.resolve(__dirname, 'src/types/auto-imports.d.ts'),
       }),
       Components({
         resolvers: [ElementPlusResolver()],
-        dts: path.resolve(__dirname, 'src/components.d.ts'),
+        dts: path.resolve(__dirname, 'src/types/components.d.ts'),
       }),
     ],
     resolve: {
