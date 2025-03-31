@@ -1,0 +1,133 @@
+[
+  {
+    "id": 1,
+    "name": "逻辑 (Logic)",
+    "description": "故事或角色行为的内部一致性和在设定世界观下的合理性。",
+    "assessment_points": [
+      "情节发展是否符合已建立的设定和前文？有无明显矛盾？",
+      "角色行为是否符合其性格、动机和处境？",
+      "因果关系是否清晰且在故事框架内可信？",
+      "世界观设定（如魔法、科技）是否被一贯遵守？"
+    ],
+    "scoring_reference": "1分=充满矛盾混乱；10分=逻辑严密，前后呼应。",
+    "category": "Scoring",
+    "suggested_weight_range": 20,
+    "display_order": 1
+  },
+  {
+    "id": 2,
+    "name": "文笔 (Writing Style)",
+    "description": "语言表达的质量、美感和感染力。",
+    "assessment_points": [
+      "环境、人物、动作的描写是否生动、形象？",
+      "叙事节奏是否流畅、张弛有度？",
+      "词汇是否丰富准确？句式是否有变化？",
+      "能否有效营造氛围、传达情感？",
+      "语言风格是否符合故事基调和类型？"
+    ],
+    "scoring_reference": "1分=语言干瘪语病多；10分=文笔优美，感染力强。",
+    "category": "Scoring",
+    "suggested_weight_range": 25,
+    "display_order": 2
+  },
+  {
+    "id": 3,
+    "name": "遵循能力 (Adherence)",
+    "description": "理解并遵循用户指令、设定和上下文的能力。",
+    "assessment_points": [
+      "是否准确执行用户的显式指令（Prompt）？",
+      "是否能记住并保持用户设定的核心元素？",
+      "多轮交互中是否能保持上下文连贯性？",
+      "是否会忽略或“忘记”关键设定？"
+    ],
+    "scoring_reference": "1分=无视指令设定；10分=精确遵循所有设定指令。",
+    "category": "Scoring",
+    "suggested_weight_range": 20,
+    "display_order": 3
+  },
+  {
+    "id": 4,
+    "name": "发散能力 (Creativity)",
+    "description": "在遵循基本设定的前提下，进行创造性发挥，提供惊喜和新颖内容的能力。",
+    "assessment_points": [
+      "能否在未明确指示处进行合理有趣的补充扩展？",
+      "能否提出意想不到但符合逻辑的情节或发展？",
+      "能否生成独特的细节、设定或对话？",
+      "发散是否服务于故事，而非无意义跑题？"
+    ],
+    "scoring_reference": "1分=只会简单重复延伸；10分=持续带来新颖有趣且相关的创意。",
+    "category": "Scoring",
+    "suggested_weight_range": 15,
+    "display_order": 4
+  },
+  {
+    "id": 5,
+    "name": "语料广度 (Knowledge)",
+    "description": "生成内容时所能调用的知识储备，包括事实、文化、领域术语和风格等。",
+    "assessment_points": [
+      "描写特定背景时细节是否显得可信（或无常识错误）？",
+      "能否根据需要模仿不同风格或使用特定术语？",
+      "知识运用是否自然融入故事？"
+    ],
+    "scoring_reference": "1分=知识狭窄错误多；10分=知识丰富，运用自然。",
+    "category": "Scoring",
+    "suggested_weight_range": 10,
+    "display_order": 5
+  },
+  {
+    "id": 6,
+    "name": "流畅度/多样性 (Fluency)",
+    "description": "语言表达是否自然流畅，避免不必要的重复（词语、短语、句式）。",
+    "assessment_points": [
+      "是否存在某些词语或短语被过度使用？",
+      "句式结构是否过于单一、单调？",
+      "整体语言是否像“人话”，而非机器或模板感？"
+    ],
+    "scoring_reference": "1分=大量重复，语言生硬；10分=用词丰富，表达流畅自然。",
+    "category": "Scoring",
+    "suggested_weight_range": 10,
+    "display_order": 6
+  },
+  {
+    "id": 7,
+    "name": "一致性/合理性 (Coherence)",
+    "description": "内容是否保持连贯，符合情境和基调，没有莫名其妙、破坏氛围的“怪异”内容。",
+    "assessment_points": [
+      "是否出现与故事基调、世界观或角色行为完全不符的内容？",
+      "情节或对话是否会无征兆地跳跃到不相关议题？",
+      "是否存在无意义、令人不适或由模型幻觉导致的怪异输出？"
+    ],
+    "scoring_reference": "1分=频繁出现莫名其妙、破坏氛围的内容；10分=内容连贯符合情境，无不合理突兀。",
+    "category": "Scoring",
+    "suggested_weight_range": 10,
+    "display_order": 7
+  },
+  {
+    "id": 8,
+    "name": "性价比 (Cost)",
+    "description": "获得满意输出所需付出的成本（时间、金钱、调试精力）与输出质量的比值。",
+    "assessment_points": [
+      "使用价格（API 调用费、订阅费等）。",
+      "达到满意效果需要多少次尝试或修改指令？",
+      "生成速度。"
+    ],
+    "scoring_reference": "主观评价（非常值 / 一般 / 不值）或量化指标。",
+    "category": "Additional Info",
+    "suggested_weight_range": "N/A",
+    "display_order": 101
+  },
+  {
+    "id": 9,
+    "name": "多模态 (Multimodal)",
+    "description": "结合或生成文本以外信息（如图像、声音）的能力及其在创意场景中的应用效果。",
+    "assessment_points": [
+      "能否理解图片输入并生成相关文本？",
+      "能否根据文本生成符合描述的图像？",
+      "多模态交互是否流畅？生成内容是否准确、有创意？"
+    ],
+    "scoring_reference": "能力有无（是/否）或效果评级（差/一般/好/优秀）。",
+    "category": "Additional Info",
+    "suggested_weight_range": "N/A",
+    "display_order": 102
+  }
+]

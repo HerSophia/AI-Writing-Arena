@@ -1,0 +1,60 @@
+// /client/preview/tsconfig.json
+{
+  "compilerOptions": {
+    /* 基本选项 */
+    "target": "ESNext", // 编译目标 JavaScript 版本。Vite 会处理最终的浏览器兼容性，所以可以用最新版本。
+    "module": "ESNext", // 使用 ES 模块系统，与 Vite 的原生 ESM 支持一致。
+    "strict": true, // 启用所有严格类型检查选项，强烈推荐。
+    "jsx": "preserve", // 保留 JSX 供 Vue 处理（即使主要用 <template>，Vue 的 TS 工具链也可能需要）。
+    "importHelpers": true, // 从 tslib 导入辅助函数（如 __extends, __assign），减少代码体积。
+    "moduleResolution": "Bundler", // (或 "Node") 推荐使用 'Bundler'，更接近现代打包工具的行为。
+    "experimentalDecorators": true, // 如果未来可能使用装饰器（通常 TypeORM 用，但 Vue 有时也有库用）。如果不用可以关掉。
+    "emitDecoratorMetadata": true, // 与 experimentalDecorators 配合使用。
+    /* 额外检查 */
+    "noUnusedLocals": true, // 报告未使用的局部变量错误。
+    "noUnusedParameters": true, // 报告未使用的参数错误。
+    "noFallthroughCasesInSwitch": true, // 报告 switch 语句中 fallthrough 情况错误。
+    "noImplicitReturns": true, // 确保函数所有代码路径都有返回值（如果函数声明了返回类型）。
+    /* 模块解析选项 */
+    "baseUrl": ".", // 用于解析非相对模块名称的基目录。
+    "paths": { // 定义路径别名，需要与 vite.config.ts 中的 alias 配置一致。
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "resolveJsonModule": true, // 允许导入 .json 文件。
+    "esModuleInterop": true, // 允许 'import x from y' 对没有默认导出的模块生效，提高兼容性。
+    "allowSyntheticDefaultImports": true, // 允许从没有设置默认导出的模块中默认导入。
+    /* 源映射 & 声明文件 */
+    "sourceMap": true, // 生成 .map 文件，方便调试。
+    "declaration": false, // 对于应用项目，通常不需要生成 .d.ts 声明文件。
+    // "declarationMap": true, // 如果需要生成 .d.ts.map 文件。
+    /* 其他选项 */
+    "skipLibCheck": true, // 跳过对所有声明文件 (*.d.ts) 的类型检查，加快编译速度。
+    "forceConsistentCasingInFileNames": true, // 不允许文件名大小写不一致的引用。
+    "allowJs": false, // 是否允许编译 JS 文件 (通常在 TS 项目中设为 false)。
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ], // 指定编译过程中需要包含的库文件，"DOM" 对浏览器环境是必需的。
+    "types": [
+      "vite/client"
+    ], // 包含 Vite 提供的客户端类型，例如用于处理环境变量和静态资源导入。
+    /* Vite 特定 */
+    "isolatedModules": true, // 将每个文件作为单独的模块来转译，这是 Vite (esbuild) 所需的。
+    "noEmit": true // *非常重要*：不让 tsc 生成输出文件，Vite 会负责构建过程。TypeScript 主要用于类型检查。
+  },
+  "include": [ // 指定需要 TypeScript 编译的文件/目录
+    "src/**/*.ts",
+    "src/**/*.d.ts", // 包括自定义的声明文件
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite.config.ts" // 也对 vite 配置文件进行类型检查
+  ],
+  "exclude": [ // 指定需要排除的文件/目录
+    "node_modules",
+    "dist" // 排除构建输出目录
+  ],
+  // "references": [{ "path": "./tsconfig.node.json" }] // 如果有 tsconfig.node.json (见下文)
+}

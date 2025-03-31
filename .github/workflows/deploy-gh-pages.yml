@@ -1,0 +1,65 @@
+name: Deploy Frontend to GitHub Pages
+
+# 触发工作流的事件：当 main 分支有 push 操作时
+on:
+  push:
+    branches:
+      - main # 或者你的主分支名称，如 master
+
+# 允许此工作流创建 GitHub Pages 部署
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 设置并发控制，确保同一时间只有一个部署在运行
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    # 指定运行环境
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # 输出部署后的 URL
+    runs-on: ubuntu-latest
+
+    steps:
+      # 第一步：签出代码
+      - name: Checkout repository
+        uses: actions/checkout@v4 # 使用 v4 版本
+
+      # 第二步：设置 Node.js 环境
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 指定你项目使用的 Node.js 版本
+          cache: 'npm'
+          cache-dependency-path: client/preview/package-lock.json # <-- 指定前端项目的 lock 文件路径!
+
+      # 第三步：安装前端项目的依赖
+      - name: Install frontend dependencies
+        working-directory: ./client/preview # <-- 指定前端项目的目录!
+        run: npm ci # 使用 ci 更快更稳定
+
+      # 第四步：构建前端项目
+      - name: Build frontend project
+        working-directory: ./client/preview # <-- 指定前端项目的目录!
+        run: npm run build # 运行构建命令
+
+      # 第五步：设置 GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 第六步：上传构建产物作为 Artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 指定构建输出目录相对于仓库根目录的路径
+          path: ./client/preview/dist # <-- 指定前端项目的构建输出目录!
+
+      # 第七步：部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,31 @@
+{
+  "name": "llm-creative-eval-preview",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "axios": "^1.8.4",
+    "element-plus": "^2.9.7",
+    "pinia": "^2.1.7",
+    "typed-vue3": "^0.0.2",
+    "vue": "^3.4.34",
+    "vue-router": "^4.4.0",
+    "vue3-typed-js": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.14",
+    "@vitejs/plugin-vue": "^5.1.1",
+    "typescript": "^5.5.4",
+    "unplugin-auto-import": "^0.18.2",
+    "unplugin-vue-components": "^0.27.3",
+    "vite": "^5.4.15",
+    "vue-tsc": "^2.0.29"
+  }
+}
