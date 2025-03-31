@@ -228,12 +228,20 @@ const loadData = async () => {
   loading.value = true;
   scoreDescriptions.value = {}; // 清空旧数据
   try {
-    // 并行加载四个 JSON 文件
+
+    const baseUrl = import.meta.env.BASE_URL; // 获取配置的 base URL
+    // 确保 baseUrl 结尾有斜杠，路径开头没有斜杠，以正确拼接
+    const joinPath = (base: string, path: string) => {
+        const ensuredBase = base.endsWith('/') ? base : `${base}/`;
+        const ensuredPath = path.startsWith('/') ? path.substring(1) : path;
+        return `${ensuredBase}${ensuredPath}`;
+    }
+
     const [dimRes, llmRes, evalRes, descRes] = await Promise.all([
-      fetch('/data/dimensions.json'),
-      fetch('/data/llms.json'),
-      fetch('/data/evaluations.json'),
-      fetch('/data/score_descriptions.json') // <-- 加载评分描述
+      fetch(joinPath(baseUrl, 'data/dimensions.json')),
+      fetch(joinPath(baseUrl, 'data/llms.json')),
+      fetch(joinPath(baseUrl, 'data/evaluations.json')),
+      fetch(joinPath(baseUrl, 'data/score_descriptions.json')) // 确保文件名无误
     ]);
 
     if (!dimRes.ok || !llmRes.ok || !evalRes.ok || !descRes.ok) { // <-- 检查新请求
