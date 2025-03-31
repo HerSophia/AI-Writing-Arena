@@ -6,7 +6,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command, mode }) => { // <-- 改成接收参数的函数
+export default defineConfig(({ command }) => { // <-- 改成接收参数的函数
   // command 的值是 'serve' (开发) 或 'build' (构建)
   // mode 的值是 'development' 或 'production' 等
 

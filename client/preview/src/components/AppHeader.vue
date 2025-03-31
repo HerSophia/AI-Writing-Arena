@@ -19,7 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { ElLink } from 'element-plus'; // 引入 ElLink
 import { TypedComponent, type TypedOptions } from "typed-vue3";
 

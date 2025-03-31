@@ -101,8 +101,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { LlmCombinedEvaluation, Dimension, ScoreDistribution, ScoreDescriptions } from '@/types'; // 需要更新类型定义
-import { ElDialog, ElDescriptions, ElDescriptionsItem, ElDivider, ElRow, ElCol, ElCard, ElTag, ElButton } from 'element-plus';
+import type { LlmCombinedEvaluation, Dimension, ScoreDistribution, ScoreDescriptions } from '@/type'; // 需要更新类型定义
 import { getProviderWebsite } from '@/config/providerWebsites';
 
 // VChart 是全局注册的
@@ -155,7 +154,7 @@ const getPieChartOption = (dimension: Dimension, distributionData: ScoreDistribu
   return {
     title: {
       // text: dimension.name, // 标题放卡片头了
-      // subtext: `总评分数: ${total}`,
+      subtext: `总评分数: ${total}`,
       left: 'center',
       textStyle: {
          fontSize: 14,

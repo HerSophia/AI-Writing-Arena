@@ -78,7 +78,7 @@ const router = createRouter({
   routes, // 挂载路由规则
 
   // (可选) 配置路由跳转时的滚动行为
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(_to, _from, savedPosition) {
     if (savedPosition) {
       // 如果有保存的位置（例如浏览器后退），则恢复该位置
       return savedPosition

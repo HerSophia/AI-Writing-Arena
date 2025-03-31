@@ -16,6 +16,7 @@
         :loading="loading"
         :score-descriptions="scoreDescriptions"
         @view-details="handleViewDetails"
+        @sort-change="handleApplySort"
       />
 
       <PaginationControl
@@ -62,7 +63,7 @@
 import { ref, onMounted, computed } from 'vue';
 import AppHeader from '@/components/AppHeader.vue';
 import FilterControl from '@/components/FilterControl.vue';
-import SortControl from '@/components/SortControl.vue';
+//import SortControl from '@/components/SortControl.vue';
 import EvaluationTable from '@/components/EvaluationTable.vue';
 import PaginationControl from '@/components/PaginationControl.vue';
 import AppFooter from '@/components/AppFooter.vue';
@@ -70,7 +71,7 @@ import LLMDetailDialog from '@/components/LLMDetailDialog.vue'; // 确保已导�
 import MethodologyExplanation from '@/components/MethodologyExplanation.vue'; // <-- 导入说明组件
 import { ElMessage, ElButton, ElContainer, ElMain, ElDialog } from 'element-plus'; // 显式导入需要的 Element Plus 组件
 import { Refresh } from '@element-plus/icons-vue';
-import type { LlmBasicInfo, Dimension, EvaluationData, LlmCombinedEvaluation, FilterSettings, SortSettings,ScoreDescriptions } from '@/types'; // 依赖 @/types.ts
+import type { LlmBasicInfo, Dimension, EvaluationData, LlmCombinedEvaluation, FilterSettings, SortSettings,ScoreDescriptions } from '@/type'; // 依赖 @/types.ts
 
 // --- 固定权重定义 (确保总和为 100) ---
 const dimensionWeights: { [key: string]: number } = {

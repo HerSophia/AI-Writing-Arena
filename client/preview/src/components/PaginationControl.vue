@@ -17,11 +17,14 @@
 <script setup lang="ts">
 import { ElPagination } from 'element-plus';
 
+// @ts-ignore TS6133: props is used in the template
 const props = defineProps<{
   currentPage: number;
   pageSize: number;
   totalItems: number;
 }>();
+
+console.log('Pagination props:', props);
 
 // 同时 emit page-change 和 size-change 事件
 const emit = defineEmits(['page-change', 'size-change']);

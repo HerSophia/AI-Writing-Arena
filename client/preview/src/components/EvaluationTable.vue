@@ -79,12 +79,11 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { LlmCombinedEvaluation, Dimension, ScoreDescriptions } from '@/types';
-import { ElTag, ElTable, ElTableColumn, ElTooltip, ElButton, ElScrollbar } from 'element-plus'; // 显式导入，虽然有自动导入
+import type { Dimension, ScoreDescriptions,LlmCombinedEvaluation } from '@/type';
 
 // 定义 Props (如果类型定义在外部，可以简化)
 const props = defineProps<{
-  tableData: LlmEvaluation[];
+  tableData: LlmCombinedEvaluation[];
   dimensions: Dimension[];
   loading: boolean;
   scoreDescriptions: ScoreDescriptions;
@@ -108,7 +107,7 @@ const getTagType = (score: number | undefined): ('success' | 'warning' | 'danger
 
 // 查看详情操作 (目前仅打印)
 const emit = defineEmits(['view-details']); // 定义事件
-const viewDetails = (row: LlmEvaluation) => {
+const viewDetails = (row: LlmCombinedEvaluation) => {
   console.log('查看详情:', row.llm.name);
   // 触发事件，将选中的行数据传递给父组件
   emit('view-details', row);
