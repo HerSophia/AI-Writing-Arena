@@ -18,10 +18,11 @@
 .app-footer {
   text-align: center;
   margin-top: 40px;
-  padding: 20px 0;
+  padding: 20px 15px; /* 增加左右 padding */
   border-top: 1px solid #eee;
-  font-size: 0.85em;
-  color: #909399; /* Element Plus Secondary Text Color */
+  font-size: 0.85em; /* 默认字体 */
+  color: #909399;
+  line-height: 1.6; /* 增加行高 */
 }
 
 .app-footer p {
@@ -29,11 +30,26 @@
 }
 
 .app-footer a {
-  color: #409EFF; /* Element Plus Primary Color */
+  color: #409EFF;
   text-decoration: none;
 }
 
 .app-footer a:hover {
   text-decoration: underline;
+}
+
+/* --- 新增媒体查询 --- */
+@media (max-width: 767px) {
+  .app-footer {
+    margin-top: 30px; /* 减小与上方内容的间距 */
+    padding: 15px 10px; /* 减小移动端内边距 */
+    font-size: 0.8em; /* 减小移动端字号 */
+  }
+}
+
+@media (max-width: 480px) {
+  .app-footer {
+    font-size: 0.75em; /* 在更小屏幕上进一步减小字号 */
+  }
 }
 </style>

@@ -59,57 +59,48 @@ const subtitleOptions: TypedOptions = {
 .app-header {
   text-align: center;
   margin-bottom: 30px;
-  padding: 25px 0;
+  padding: 25px 15px; /* 增加左右 padding */
   border-bottom: 1px solid #eee;
 }
 
 .app-header h1 {
-  margin-bottom: 8px; /* 减小主标题和副标题间距 */
-  font-size: 2.2em;
+  margin-bottom: 8px;
+  font-size: 2.2em; /* 默认字体 */
   font-weight: 600;
   background-image: linear-gradient(to right, #5cadff, #0e66be);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   display: inline-block;
+  line-height: 1.2; /* 增加行高防止文字截断 */
 }
 
-/* --- 副标题样式 --- */
 .dynamic-subtitle {
-  font-size: 1.1em; /* 副标题字号 */
-  color: #888888; /* 灰色 */
-  height: 1.5em; /* 预留高度防止文字消失时跳动 */
-  min-height: 1.5em; /* 确保至少有这个高度 */
-  margin-bottom: 15px; /* 副标题和下方链接的间距 */
+  font-size: 1.1em; /* 默认字体 */
+  color: #888888;
+  height: 1.5em;
+  min-height: 1.5em;
+  margin-bottom: 15px;
 }
 
-/* (可选) 定制打字光标样式 */
-/* 需要使用 :deep() 选择器，因为光标是子组件内部生成的 */
 .dynamic-subtitle :deep(.typed-cursor) {
-  color: #aaaaaa; /* 光标颜色 */
+  color: #aaaaaa;
   font-weight: 100;
-  /* animation-duration: 0.8s; */ /* 调整闪烁速度 */
 }
-
-/* Typed.js 默认会给光标添加样式，如果需要可以覆盖 */
-/* 例如:
-:deep(.dynamic-subtitle .typed-cursor) {
-  color: #aaa;
-  font-weight: lighter;
-}
-*/
 
 .subtitle-links {
-  font-size: 0.95em;
+  font-size: 0.95em; /* 默认字体 */
   color: #606266;
+  line-height: 1.6; /* 增加行高方便点击 */
 }
 
 .subtitle-links a,
 .subtitle-links .el-link {
   color: #409EFF;
   text-decoration: none;
-  margin: 0 10px;
+  margin: 0 8px; /* 默认间距 */
   vertical-align: baseline;
+  display: inline-block; /* 确保 margin 生效 */
 }
 
 .subtitle-links a:hover,
@@ -118,6 +109,53 @@ const subtitleOptions: TypedOptions = {
 }
 
 .methodology-link {
-    font-size: 0.95em !important;
+    font-size: inherit !important; /* 继承父级 .subtitle-links 的字号 */
+}
+
+/* --- 新增媒体查询 --- */
+@media (max-width: 767px) {
+  .app-header {
+    padding: 20px 10px; /* 减小移动端上下内边距 */
+    margin-bottom: 20px; /* 减小与下方内容的间距 */
+  }
+
+  .app-header h1 {
+    font-size: 1.8em; /* 减小移动端主标题字号 */
+  }
+
+  .dynamic-subtitle {
+    font-size: 1em; /* 减小移动端副标题字号 */
+    height: auto; /* 高度自适应 */
+    min-height: 1.5em; /* 保留最小高度 */
+  }
+
+  .subtitle-links {
+    font-size: 0.9em; /* 减小移动端链接字号 */
+  }
+  /* 可以考虑让链接换行显示 */
+  /*
+  .subtitle-links a,
+  .subtitle-links .el-link {
+     display: block; 
+     margin: 5px auto; 
+     text-align: center;
+  }
+  .subtitle-links span { 
+     display: none; // 隐藏分隔符 "|"
+  }
+  */
+}
+
+/* 针对更小的屏幕，可以进一步减小字体 */
+@media (max-width: 480px) {
+   .app-header h1 {
+     font-size: 1.6em;
+   }
+   .dynamic-subtitle {
+     font-size: 0.9em;
+   }
+    .subtitle-links {
+      font-size: 0.85em;
+   }
 }
 </style>

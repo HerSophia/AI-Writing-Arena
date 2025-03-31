@@ -327,15 +327,57 @@ onMounted(() => {
 
 <style scoped>
 .main-content {
-  padding: 20px;
-  max-width: 1400px;
+  padding: 20px; /* 默认内边距 */
+  max-width: 1400px; /* 默认最大宽度 */
   margin: 0 auto;
+  box-sizing: border-box; /* 确保 padding 不会增加总宽度 */
+  width: 100%; /* 确保占满父容器 */
 }
 .controls-container {
   margin-bottom: 20px;
   display: flex;
   gap: 10px;
-  align-items: center;
+  align-items: center; /* 垂直居中 */
   flex-wrap: wrap; /* 允许换行 */
+}
+
+/* --- 新增媒体查询 --- */
+@media (max-width: 767px) {
+  .main-content {
+    padding: 10px; /* 减小移动端内边距 */
+    max-width: none; /* 取消最大宽度限制 */
+  }
+
+  .controls-container {
+    flex-direction: column; /* 改为垂直堆叠 */
+    align-items: stretch; /* 让子元素宽度填满 */
+    gap: 15px; /* 调整堆叠时的间距 */
+  }
+
+  /* 让 FilterControl 和按钮宽度自动 */
+  .controls-container > :deep(.el-button), /* 如果 FilterControl 是根 div，可能不需要 :deep() */
+  .controls-container > :deep(div) { /* 假设 FilterControl 是一个 div */
+      width: 100%; /* 让它们占满容器宽度 */
+      box-sizing: border-box;
+  }
+  /* 刷新按钮可能需要单独调整，让它不占满整行 */
+   .controls-container > .el-button[title="刷新数据"] {
+     width: auto; /* 恢复自动宽度 */
+     align-self: flex-start; /* 可以让它靠右 */
+     /* 或者 align-self: center; 居中 */
+   }
+
+  /* 也可以考虑让分页控件的布局在移动端更紧凑 */
+  /* (这个样式可能需要在 PaginationControl.vue 中调整，或者在这里用 :deep() 覆盖) */
+
+  :deep(.pagination-container .el-pagination) {
+     justify-content: center;
+     flex-wrap: wrap;
+     gap: 5px;
+  }
+  :deep(.pagination-container .el-pagination__total) {
+     margin-right: auto; 
+  }
+
 }
 </style>

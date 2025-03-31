@@ -18,7 +18,8 @@
     "typed-vue3": "^0.0.2",
     "vue": "^3.4.34",
     "vue-echarts": "^7.0.3",
-    "vue-router": "^4.4.0"
+    "vue-router": "^4.4.0",
+    "vue-use": "^0.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.14",
