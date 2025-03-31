@@ -200,8 +200,6 @@ const getTotalScoreColor = (score: number): string => {
 
 // --- 屏幕尺寸检测 ---
 const isMobile = useMediaQuery("(max-width: 767px)");
-let mediaQueryList: MediaQueryList | null = null; // 存储 MediaQueryList 实例
-
 </script>
 
 <style scoped>
