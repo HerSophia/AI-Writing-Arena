@@ -318,7 +318,7 @@ const getPieChartOption = (dimension: Dimension, distributionData: ScoreDistribu
       itemWidth: 8,
       itemHeight: 8,
       // 图例过多时可以考虑分页或隐藏
-      type: 'scroll', // 允许图例滚动
+      //type: 'scroll', // 允许图例滚动
     },
     series: [
       {
