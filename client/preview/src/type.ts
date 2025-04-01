@@ -1,4 +1,4 @@
-export interface Dimension { id: number; name: string; description: string; assessment_points: string[]; scoring_reference: string; category: 'Scoring' | 'Additional Info'; suggested_weight_range: string; display_order?: number; }
+export interface Dimension { id: number; name: string; description: string; assessment_points: string[]; scoring_reference: string; category: 'Scoring' | 'Additional Info'; suggested_weight_range: string; display_order?: number; weight?: number; }
 export interface LlmBasicInfo { id: number; name: string; version: string; provider: string; description: string; }
 export interface ScoreDetail { score: number; }
 export interface ScoreDistribution { range: string; count: number; }

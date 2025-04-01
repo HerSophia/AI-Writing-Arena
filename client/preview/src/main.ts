@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // --- ECharts 按需引入 ---
 import * as echarts from 'echarts/core';
-import { PieChart } from 'echarts/charts';
+import { BarChart, PieChart } from 'echarts/charts';
 import {
   TitleComponent,
   TooltipComponent,
@@ -20,7 +20,10 @@ echarts.use([
   TooltipComponent,
   LegendComponent,
   GridComponent,
+  // DatasetComponent, // 如果使用 dataset 则需要
+  // TransformComponent // 如果使用数据转换则需要
   PieChart,
+  BarChart,
   CanvasRenderer
 ]);
 // --- ECharts 结束 ---

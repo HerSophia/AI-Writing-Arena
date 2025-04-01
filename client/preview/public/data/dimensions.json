@@ -27,7 +27,7 @@
     ],
     "scoring_reference": "1分=语言干瘪语病多；10分=文笔优美，感染力强。",
     "category": "Scoring",
-    "suggested_weight_range": 25,
+    "suggested_weight_range": 30,
     "display_order": 2
   },
   {
@@ -57,7 +57,7 @@
     ],
     "scoring_reference": "1分=只会简单重复延伸；10分=持续带来新颖有趣且相关的创意。",
     "category": "Scoring",
-    "suggested_weight_range": 15,
+    "suggested_weight_range": 10,
     "display_order": 4
   },
   {
@@ -71,7 +71,7 @@
     ],
     "scoring_reference": "1分=知识狭窄错误多；10分=知识丰富，运用自然。",
     "category": "Scoring",
-    "suggested_weight_range": 10,
+    "suggested_weight_range": 5,
     "display_order": 5
   },
   {
@@ -99,7 +99,7 @@
     ],
     "scoring_reference": "1分=频繁出现莫名其妙、破坏氛围的内容；10分=内容连贯符合情境，无不合理突兀。",
     "category": "Scoring",
-    "suggested_weight_range": 10,
+    "suggested_weight_range": 5,
     "display_order": 7
   },
   {

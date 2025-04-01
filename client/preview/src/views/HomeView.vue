@@ -56,6 +56,21 @@
        </template>
     </el-dialog>
 
+    <!-- 添加一个加载状态或错误提示 (可选) -->
+    <div v-if="isLoading">正在加载公告信息...</div>
+    <div v-if="loadError" style="color: red;">加载公告失败: {{ loadError }}</div>
+
+    <!-- 公告对话框 -->
+    <!-- 确保传递的数据是响应式的 ref -->
+    <AnnouncementDialog
+      v-if="!isLoading && !loadError" 
+      v-model:visible="showAnnouncementDialog"
+      :announcements="announcementData"
+      :changelog="changelogData"
+      :storage-key="announcementStorageKey"
+    />
+  
+
   </el-container>
 </template>
 
@@ -69,6 +84,7 @@ import PaginationControl from '@/components/PaginationControl.vue';
 import AppFooter from '@/components/AppFooter.vue';
 import LLMDetailDialog from '@/components/LLMDetailDialog.vue'; // 确保已导入
 import MethodologyExplanation from '@/components/MethodologyExplanation.vue'; // <-- 导入说明组件
+import AnnouncementDialog from '@/components/AnnouncementDialog.vue';
 import { ElMessage, ElButton, ElContainer, ElMain, ElDialog } from 'element-plus'; // 显式导入需要的 Element Plus 组件
 import { Refresh } from '@element-plus/icons-vue';
 import type { LlmBasicInfo, Dimension, EvaluationData, LlmCombinedEvaluation, FilterSettings, SortSettings,ScoreDescriptions } from '@/type'; // 依赖 @/types.ts
@@ -319,9 +335,83 @@ const handleViewDetails = (rowData: LlmCombinedEvaluation) => {
   detailDialogVisible.value = true;
 };
 
+const loadAnnouncementsAndChangelog = async () => {
+  isLoading.value = true;
+  loadError.value = null;
+  try {
+    // 使用 Promise.all 并行加载
+    const [announcementsResponse, changelogResponse] = await Promise.all([
+      fetch('/assets/announcements.json'), // 注意路径相对于 public 目录
+      fetch('/assets/changelog.json')    // 注意路径相对于 public 目录
+    ]);
+
+    if (!announcementsResponse.ok) {
+      throw new Error(`无法加载公告: ${announcementsResponse.statusText}`);
+    }
+    if (!changelogResponse.ok) {
+      throw new Error(`无法加载更新日志: ${changelogResponse.statusText}`);
+    }
+
+    // 解析 JSON 数据
+    const announcements = await announcementsResponse.json();
+    const changelog = await changelogResponse.json();
+
+    // 更新 ref (确保类型正确，如果需要可以添加验证)
+    announcementData.value = announcements as string[];
+    changelogData.value = changelog as ChangelogEntry[];
+
+  } catch (error: any) {
+    console.error("加载公告/日志数据失败:", error);
+    loadError.value = error.message || '未知错误';
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+const checkIfShowAnnouncement = () => {
+  try {
+    const hasSeen = localStorage.getItem(announcementStorageKey);
+    if (!hasSeen) {
+      // 如果 localStorage 中没有记录，或者记录不是 'true' (根据你的存储逻辑)
+      showAnnouncementDialog.value = true; // 则显示对话框
+    } else {
+        console.log(`用户已设置 '${announcementStorageKey}'，不再自动弹出公告。`);
+    }
+  } catch (e) {
+    console.error("无法读取 localStorage:", e);
+    // 在无法访问 localStorage 的情况下，可以选择总是显示或总是不显示
+    showAnnouncementDialog.value = true; // 例如，保险起见，显示出来
+  }
+};
+
+// --- State ---
+const showAnnouncementDialog = ref(false);
+const announcementStorageKey = 'hasSeenLatestAnnouncement_v1.2.1'; // 更改 key 强制显示新公告
+const isLoading = ref(true); // 新增加载状态
+const loadError = ref<string | null>(null); // 新增错误状态
+
+// --- 数据 Refs (初始化为空数组) ---
+const announcementData = ref<string[]>([]);
+// 定义 Changelog 条目类型 (如果已在别处定义，可导入)
+interface ChangelogEntry {
+  version: string;
+  date: string;
+  changes: string[];
+}
+const changelogData = ref<ChangelogEntry[]>([]);
+
+// --- Lifecycle Hooks ---
+onMounted(async () => {
+  await loadAnnouncementsAndChangelog(); // 等待数据加载完成
+  if (!loadError.value) { // 仅在加载成功时检查是否需要显示
+    checkIfShowAnnouncement();
+  }
+});
+
 // --- 生命周期 ---
 onMounted(() => {
   loadData();
+  checkIfShowAnnouncement();
 });
 </script>
 
